@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Devi Ji 🤍 </title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", system-ui, sans-serif;
+    background: linear-gradient(135deg, #ffe0f0, #fff0d4, #d0f0ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+    /* Floating stars */
+    .star {
+      position: absolute;
+      font-size: 14px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      to {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Card flip */
+    .scene {
+      width: 340px;
+      height: 460px;
+      perspective: 1200px;
+    }
+
+    .card {
+  width: 120%;
+  height: 110%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition:
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s ease;
+}
+
+    .card.flipped {
+  transform: rotateY(180deg) scale(1.01);
+  box-shadow: 0 40px 80px rgba(79, 70, 229, 0.25);
+}
+    .card-face {
+      position: absolute;
+      width: 120%;
+      height: 110%;
+      backface-visibility: hidden;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+      padding: 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+.card-face {
+  overflow: visible;
+}
+
+    h1 {
+      font-size: 2.2rem;
+      color: #4f46e5;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #6d28d9;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 22px;
+      padding: 14px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed, #a16207);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    }
+
+   button:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(0,0,0,0.3); }
+  button:active { transform: scale(0.96); }
+
+/* Card hover sparkle */
+.card:hover {
+  box-shadow: 0 45px 90px rgba(124, 58, 237, 0.4);
+}
+
+/* Sparkles around card */
+.card-sparkle {
+  position: absolute;
+  font-size: 12px;
+  pointer-events: none;
+  animation: sparkle 0.7s ease-out forwards;
+  z-index: 15;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1.2) translateY(-10px); opacity: 0; }
+}
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 18px 0 12px;
+    }
+
+.photos img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 14px;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.photos img:hover {
+  transform: scale(1.18) translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+  z-index: 10;
+}
+
+ 
+<button id="complimentBtn">Need a compliment 💭</button>
+<p id="complimentText" style="
+  margin-top:10px;
+  font-size:0.9rem;
+  color:#444;
+  min-height:1.4em;
+"></p>
+
+    .signature {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6d28d9;
+      font-weight: 500;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: 10px;
+      font-size: 16px;
+      animation: fall 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+
+/* Soft glow pulse behind card */
+.card-container {
+  position: relative;
+}
+
+.card-container::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 58, 237, 0.35),
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+/* Paper texture overlay */
+.card-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  opacity: 0.12;
+  pointer-events: none;
+  border-radius: 24px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="happy-birthday-368842.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="scene">
+    <div class="card" id="card">
+
+      <!-- Front -->
+      <div class="card-face">
+        <h1>🎁 Tap Me</h1>
+        <p>Something cute is waiting inside…</p>
+        <button id="openBtn">Open 💫</button>
+      </div>
+
+      <!-- Back -->
+      <div class="card-face card-back">
+        <h1>🎂 Happy Birthday 🎂</h1>
+        <h2>🌸 Nehal 🌸</h2>
+
+        <p>
+          🎁 Surprise! Your birthday card is better than you expected…<br>
+I know you don't like drama so I'll get straight to the point,<br>                                                                                        
+You’re fun, a little chaos, and impossible not to like,<br>
+Hope your day is as fun as our weird little chats 😊<br>
+(PS: Itni mehnat ki hai toh party toh chahiye mujhe thik haii?)                                                      
+</p>
+
+
+<div class="photos">
+<img src="photo1.jpg" />
+<img src="photo2.jpg" />
+<img src="photo3.jpg" />
+</div>
+
+
+<div class="signature">You’re officially 18 now!! That’s wild huh 😏 </div>
+<div id="finalLine" style="
+  margin-top: 16px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4f46e5;
+  letter-spacing: 0.08em;
+  min-height: 1.6em;
+"></div>
+<div style="
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #666;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+" id="memoryLine">
+  From yours truly,<br>
+  pineapple 🍍 
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+const card = document.getElementById("card");
+const music = document.getElementById("music");
+const openBtn = document.getElementById("openBtn");
+
+
+openBtn.addEventListener("click", () => {
+  // Flip card
+  card.classList.add("flipped");
+
+ openBtn.addEventListener("click", () => {
+  // Flip card
+  card.classList.add("flipped");
+
+  // 🎵 PLAY MUSIC
+  music.volume = 0.5;
+  music.currentTime = 0;
+  music.play().catch(() => {
+    alert("Tap once more to enable sound 🔊");
+  });
+
+  // Confetti
+  launchConfetti();
+
+  const surprise = document.getElementById("surprise");
+
+  setTimeout(() => {
+    surprise.style.opacity = "1";
+  }, 5000);
+
+  setTimeout(() => {
+    surprise.style.opacity = "0";
+  }, 10000);
+});
+
+
+  // Confetti
+  launchConfetti();
+const surprise = document.getElementById("surprise");
+
+// Show after 5 seconds
+setTimeout(() => {
+  surprise.style.opacity = "1";
+}, 5000);
+
+// Hide after a while (optional, feels elegant)
+setTimeout(() => {
+  surprise.style.opacity = "0";
+}, 10000);
+
+});
+
+// Final line typing effect
+const finalLine = document.getElementById('finalLine');
+const text = 'Happy 18 <3';
+finalLine.textContent = '';
+
+const memoryLine = document.getElementById('memoryLine');
+
+setTimeout(() => {
+  memoryLine.style.opacity = '1';
+}, 3500);
+
+let i = 0;
+setTimeout(() => {
+  const typing = setInterval(() => {
+    finalLine.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(typing);
+  }, 160);
+}, 1200);
+
+// Confetti function
+function launchConfetti() {
+  for (let i = 0; i < 90; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.textContent = Math.random() > 0.5 ? "🌺" : "🌸";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = (Math.random() * 0.6) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3500);
+  }
+}
+
+// Floating stars
+setInterval(() => {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.textContent = Math.random() > 0.5 ? "✨" : "⭐";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (6 + Math.random() * 4) + "s";
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 10000);
+}, 600);
+
+
+// Sparkle effect on card hover
+const cardEl = document.getElementById("card");
+
+cardEl.addEventListener("mousemove", (e) => {
+  // Only sometimes create sparkles
+  if (Math.random() > 0.6) return;
+
+  const sparkle = document.createElement("div");
+  sparkle.className = "card-sparkle";
+  sparkle.textContent = "✨"; // sparkle emoji
+  sparkle.style.left = e.offsetX + "px";
+  sparkle.style.top = e.offsetY + "px";
+
+  cardEl.appendChild(sparkle);
+
+  setTimeout(() => sparkle.remove(), 700);
+});
+
+</script>
+
+<!-- Final surprise message (non-blocking) -->
+<div id="surprise" style="
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  z-index: 20;
+  pointer-events: none;
+">
+  <div style="
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    padding: 16px 20px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 300px;
+  ">
+    <h2 style="margin-bottom:6px;color:#6d28d9;font-size:1.05rem;">
+      One more thing 💫
+    </h2>
+    <p style="font-size:0.85rem;color:#444;line-height:1.4;">
+      I hope this made you smile today<br>
+      Have a really good year ahead curly-head 🤍
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
